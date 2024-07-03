@@ -1,4 +1,5 @@
 import express from "express";
+import serverConfig from "./config.js";
 
 function createServer(hostname, port) {
   const app = express();
@@ -14,3 +15,7 @@ function createServer(hostname, port) {
 
   return app; // return the instance for further customization
 }
+
+serverConfig.serverList.forEach((serverConfig) =>
+  createServer(serverConfig.hostName, serverConfig.port)
+);
