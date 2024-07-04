@@ -1,0 +1,9 @@
+2024-07-04T17:29:52.401Z info: Request handled by Round Robin Queue 
+2024-07-04T17:32:20.473Z info: Request handled by Fifo Queue 
+2024-07-04T17:32:27.278Z info: Request of type graphql handled by server localhost:9004
+2024-07-04T17:32:39.078Z info: Request handled by priority Queue 
+2024-07-04T17:32:44.239Z info: Request of type grpc handled by server localhost:9005
+2024-07-04T17:32:50.957Z info: Request handled by Round Robin Queue 
+2024-07-04T17:32:57.923Z info: Request of type rest handled by server localhost:9003
+2024-07-04T17:37:50.685Z info: Request handled by Round Robin Queue 
+2024-07-04T17:37:50.762Z info: Request of type rest handled by server localhost:9003

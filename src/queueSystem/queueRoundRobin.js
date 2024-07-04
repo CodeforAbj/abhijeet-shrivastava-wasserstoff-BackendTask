@@ -11,7 +11,14 @@ export default class RoundRobinQueue {
   dequeue() {
     if (this.isEmpty()) return null;
     const request = this.queue[this.index];
-    this.index = (this.index + 1) % this.queue.length;
+    // Remove the request from the queue
+    this.queue.splice(this.index, 1);
+    // Adjust the index to point to the next request
+    if (this.queue.length > 0) {
+      this.index = this.index % this.queue.length;
+    } else {
+      this.index = 0; // Reset index if the queue is empty
+    }
     return request;
   }
 

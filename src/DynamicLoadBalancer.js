@@ -5,6 +5,7 @@ import serverConfig from "./serversConfig.js";
 import FIFOQueue from "./queueSystem/queueFIFO.js";
 import PriorityQueue from "./queueSystem/queuePriority.js";
 import RoundRobinQueue from "./queueSystem/queueRoundRobin.js";
+import logger from "./logs/logger.js";
 
 const servers = serverConfig.serverList;
 
@@ -37,7 +38,10 @@ const checkServerHealth = async () => {
       server.responseTime = end - start;
       server.active = true;
     } catch (error) {
-      console.error(`Failed to reach server ${server.hostName}:${server.port}`);
+      logger.error(
+        `Failed to reach server ${server.hostName}:${server.port} in health Check`
+      );
+
       server.active = false;
     }
   }
@@ -55,6 +59,9 @@ const handleRequests = (queue) => {
       const availableServers = getAvailableServers(requestType);
       if (availableServers.length > 0) {
         const targetServer = availableServers[0];
+        logger.info(
+          `Request of type ${requestType} handled by server ${targetServer.hostName}:${targetServer.port}`
+        );
         createProxyMiddleware({
           target: `http://${targetServer.hostName}:${targetServer.port}`,
           changeOrigin: true,
@@ -71,7 +78,7 @@ app.use((req, res, next) => {
   const priority = req.headers["priority"];
   if (requestType && requestType === "grpc") {
     if (priority) {
-      console.log("Priority queue");
+      logger.info(`Request handled by priority Queue `);
       priorityQueue.enqueue({ req, res, next, priority });
     } else {
       res
@@ -79,10 +86,10 @@ app.use((req, res, next) => {
         .send("Priority Header not Found. Provide Priority for gRPC request");
     }
   } else if (requestType && requestType === "graphql") {
-    console.log("Fifo queue");
+    logger.info(`Request handled by Fifo Queue `);
     fifoQueue.enqueue({ req, res, next });
   } else {
-    console.log("RoundRobin queue");
+    logger.info(`Request handled by Round Robin Queue `);
     roundRobinQueue.enqueue({ req, res, next });
   }
 });
