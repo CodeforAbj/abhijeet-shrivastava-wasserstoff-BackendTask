@@ -9,7 +9,9 @@
   "author": "Abhijeet Shrivastava",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "axios": "^1.7.2",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0"
   },
   "type": "module"
 }
