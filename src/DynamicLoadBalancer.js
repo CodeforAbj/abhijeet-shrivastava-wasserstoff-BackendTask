@@ -2,14 +2,21 @@ import express from "express";
 import axios from "axios";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import serverConfig from "./serversConfig.js";
+import FIFOQueue from "./queueSystem/queueFIFO.js";
+import PriorityQueue from "./queueSystem/queuePriority.js";
+import RoundRobinQueue from "./queueSystem/queueRoundRobin.js";
 
 const servers = serverConfig.serverList;
 
 const app = express();
 
+// Initiating Queues
+const fifoQueue = new FIFOQueue();
+const priorityQueue = new PriorityQueue();
+const roundRobinQueue = new RoundRobinQueue();
+
 // Function to filter servers based on type and health
 const getAvailableServers = (requestType) => {
-  console.log(servers);
   let availableServers = servers.filter((server) => {
     return (
       server.active && server.type.toLowerCase() === requestType.toLowerCase()
@@ -40,23 +47,49 @@ const checkServerHealth = async () => {
 setInterval(checkServerHealth, 10000);
 
 // Main function to redirect requests
-app.use((req, res, next) => {
-  const requestType = req.headers["requesttype"]; // Access request header
-  if (requestType) {
-    const availableServers = getAvailableServers(requestType);
-    if (availableServers.length > 0) {
-      const targetServer = availableServers[0];
-      createProxyMiddleware({
-        target: `http://${targetServer.hostName}:${targetServer.port}`,
-        changeOrigin: true,
-      })(req, res, next);
-    } else {
-      res.status(503).send("Service Unavailable");
+const handleRequests = (queue) => {
+  setInterval(() => {
+    if (!queue.isEmpty()) {
+      const request = queue.dequeue();
+      const requestType = request.req.headers["requesttype"];
+      const availableServers = getAvailableServers(requestType);
+      if (availableServers.length > 0) {
+        const targetServer = availableServers[0];
+        createProxyMiddleware({
+          target: `http://${targetServer.hostName}:${targetServer.port}`,
+          changeOrigin: true,
+        })(request.req, request.res, request.next);
+      } else {
+        request.res.status(503).send("Service Unavailable");
+      }
     }
+  }, 100);
+};
+
+app.use((req, res, next) => {
+  const requestType = req.headers["requesttype"].toLowerCase();
+  const priority = req.headers["priority"];
+  if (requestType && requestType === "grpc") {
+    if (priority) {
+      console.log("Priority queue");
+      priorityQueue.enqueue({ req, res, next, priority });
+    } else {
+      res
+        .status(404)
+        .send("Priority Header not Found. Provide Priority for gRPC request");
+    }
+  } else if (requestType && requestType === "graphql") {
+    console.log("Fifo queue");
+    fifoQueue.enqueue({ req, res, next });
   } else {
-    res.status(400).send("Request header 'requestType' is missing");
+    console.log("RoundRobin queue");
+    roundRobinQueue.enqueue({ req, res, next });
   }
 });
+
+handleRequests(fifoQueue);
+handleRequests(priorityQueue);
+handleRequests(roundRobinQueue);
 
 const port = 3000;
 app.listen(port, () => {
