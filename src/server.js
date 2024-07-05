@@ -27,7 +27,7 @@ function createServer(hostname, port) {
     console.log(`Server ${hostname} is On on port ${port}`);
   });
 
-  app.get("/test", () => {
+  app.get("/test", (req, res) => {
     console.log("Server Approached successfully");
     res.status(200).send("Test Success");
   });
