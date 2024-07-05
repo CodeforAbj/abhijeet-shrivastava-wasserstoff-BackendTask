@@ -23,7 +23,7 @@ function createServer(hostname, port) {
     res.status(200).send("I'm healthy");
   });
 
-  app.listen(port, hostname, () => {
+  app.listen(port, () => {
     console.log(`Server ${hostname} is On on port ${port}`);
   });
 
