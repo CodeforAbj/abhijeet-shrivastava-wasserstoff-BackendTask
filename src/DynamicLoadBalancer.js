@@ -32,7 +32,7 @@ const checkServerHealth = async () => {
     try {
       const start = Date.now();
       const response = await axios.get(
-        `https://${server.hostName}:${server.port}/healthcheck`
+        `https://${server.hostName}/healthcheck`
       );
       const end = Date.now();
       server.responseTime = end - start;
