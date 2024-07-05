@@ -67,14 +67,19 @@ const handleRequests = (queue) => {
           changeOrigin: true,
           timeout: 5000, // Set a timeout of 5 seconds
           onProxyReq: (proxyReq, req, res) => {
-            proxyReq.on("error", (err) => {
-              logger.error(`Proxy request error: ${err.message}`);
-              res.status(500).send("Proxy request error");
-            });
+            logger.info(
+              `Forwarding request to target server: ${targetServer.hostName}:${targetServer.port}`
+            );
+          },
+          onProxyRes: (proxyRes, req, res) => {
+            logger.info(
+              `Received response from target server: ${targetServer.hostName}:${targetServer.port}`
+            );
           },
           onError: (err, req, res) => {
             logger.error(`Proxy error: ${err.message}`);
-            res.status(502).send(`Proxy error: ${err.message}`);
+            logger.info(`Proxy info error: ${err.message}`);
+            res.status(502).send("Bad Gateway");
           },
         });
         proxy(request.req, request.res, request.next);
