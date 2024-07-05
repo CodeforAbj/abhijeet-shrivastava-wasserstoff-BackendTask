@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "57bc3a75-c60c-4d01-a872-3cad58920d32",
+		"name": "Wasserstoff Backend Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31851470"
+	},
+	"item": [
+		{
+			"name": "Rest Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "requestType",
+						"value": "rest",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/"
+			},
+			"response": []
+		},
+		{
+			"name": "Rest Request slowTask",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "requestType",
+						"value": "rest",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/slowtask"
+			},
+			"response": []
+		},
+		{
+			"name": "Rest Request fasttask",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "requestType",
+						"value": "rest",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/fasttask"
+			},
+			"response": []
+		},
+		{
+			"name": "Graphql request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "requestType",
+						"value": "graphql",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000"
+			},
+			"response": []
+		},
+		{
+			"name": "gRPC Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "requestType",
+						"value": "grpc",
+						"type": "text"
+					},
+					{
+						"key": "priority",
+						"value": "5",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/"
+			},
+			"response": []
+		}
+	]
+}
