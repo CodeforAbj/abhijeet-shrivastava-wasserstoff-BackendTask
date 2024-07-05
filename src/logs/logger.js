@@ -5,9 +5,6 @@ import path from "path";
 // Ensure the logs directory exists, or create it if necessary
 import fs from "fs";
 const logDirectory = path.resolve("src", "logs");
-if (!fs.existsSync(logDirectory)) {
-  fs.mkdirSync(logDirectory);
-}
 
 const logFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} ${level}: ${message}`;
