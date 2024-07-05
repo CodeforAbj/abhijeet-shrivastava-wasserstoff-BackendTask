@@ -32,7 +32,7 @@ const checkServerHealth = async () => {
     try {
       const start = Date.now();
       const response = await axios.get(
-        `http://${server.hostName}:${server.port}/healthcheck`
+        `https://${server.hostName}:${server.port}/healthcheck`
       );
       const end = Date.now();
       server.responseTime = end - start;
@@ -63,7 +63,7 @@ const handleRequests = (queue) => {
           `Request of type ${requestType} handled by server ${targetServer.hostName}:${targetServer.port}`
         );
         createProxyMiddleware({
-          target: `http://${targetServer.hostName}:${targetServer.port}`,
+          target: `https://${targetServer.hostName}:${targetServer.port}`,
           changeOrigin: true,
         })(request.req, request.res, request.next);
       } else {
