@@ -74,7 +74,7 @@ const handleRequests = (queue) => {
           },
           onError: (err, req, res) => {
             logger.error(`Proxy error: ${err.message}`);
-            res.status(502).send("Bad Gateway");
+            res.status(502).send(`Proxy error: ${err.message}`);
           },
         });
         proxy(request.req, request.res, request.next);
