@@ -30,7 +30,9 @@ function createServer(hostname, port) {
   return app; // return the instance for further customization
 }
 
-// Running  all the servers
-serverConfig.serverList.forEach((serverConfig) =>
-  createServer(serverConfig.hostName, serverConfig.port)
-);
+// for demonstration purpose the Running  all the servers feature is moved to index.js
+// serverConfig.serverList.forEach((serverConfig) =>
+//   createServer(serverConfig.hostName, serverConfig.port)
+// );
+
+export { createServer };

@@ -98,8 +98,11 @@ handleRequests(fifoQueue);
 handleRequests(priorityQueue);
 handleRequests(roundRobinQueue);
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Load balancer is running on port ${port}`);
-  checkServerHealth();
-});
+// for demonstration purpose the load balancer server start feature is moved to index.js
+// const port = 3000;
+// app.listen(port, () => {
+//   console.log(`Load balancer is running on port ${port}`);
+//   checkServerHealth();
+// });
+
+export { app, checkServerHealth };
