@@ -1,0 +1,44 @@
+2024-07-05T09:26:26.876Z info: Request handled by Round Robin Queue 
+2024-07-05T09:26:26.965Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:27:15.413Z info: Request handled by Round Robin Queue 
+2024-07-05T09:27:15.503Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:28:04.940Z info: Request handled by Round Robin Queue 
+2024-07-05T09:28:05.043Z info: Request of type rest handled by server localhost:9003
+2024-07-05T09:29:26.498Z info: Request handled by Round Robin Queue 
+2024-07-05T09:29:26.519Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:29:28.243Z info: Request handled by Round Robin Queue 
+2024-07-05T09:29:28.270Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:31:15.424Z info: Request handled by Round Robin Queue 
+2024-07-05T09:31:15.527Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:32:35.764Z info: Request handled by Round Robin Queue 
+2024-07-05T09:32:35.799Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:32:38.306Z info: Request handled by Round Robin Queue 
+2024-07-05T09:32:38.307Z info: Request of type rest handled by server localhost:9000
+2024-07-05T09:32:45.185Z info: Request handled by Round Robin Queue 
+2024-07-05T09:32:45.273Z info: Request of type rest handled by server localhost:9003
+2024-07-05T09:32:46.178Z info: Request handled by Round Robin Queue 
+2024-07-05T09:32:46.256Z info: Request of type rest handled by server localhost:9003
+2024-07-05T09:32:47.176Z info: Request handled by Round Robin Queue 
+2024-07-05T09:32:47.275Z info: Request of type rest handled by server localhost:9003
+2024-07-05T14:25:21.911Z info: Request handled by Round Robin Queue 
+2024-07-05T14:25:21.959Z info: Request of type rest handled by server localhost:9000
+2024-07-05T14:25:24.156Z info: Request handled by Round Robin Queue 
+2024-07-05T14:25:24.211Z info: Request of type rest handled by server localhost:9000
+2024-07-05T14:25:26.084Z info: Request handled by Round Robin Queue 
+2024-07-05T14:25:26.096Z info: Request of type rest handled by server localhost:9003
+2024-07-05T14:25:32.007Z info: Request handled by Round Robin Queue 
+2024-07-05T14:25:32.040Z info: Request of type rest handled by server localhost:9003
+2024-07-05T14:25:51.295Z info: Request handled by Round Robin Queue 
+2024-07-05T14:25:51.313Z info: Request of type rest handled by server localhost:9003
+2024-07-05T14:26:12.685Z info: Request handled by Round Robin Queue 
+2024-07-05T14:26:12.713Z info: Request of type rest handled by server localhost:9000
+2024-07-05T15:24:01.955Z info: Request handled by Round Robin Queue 
+2024-07-05T15:24:02.013Z info: Request of type rest handled by server localhost:9003
+2024-07-05T15:24:49.679Z info: Request handled by Round Robin Queue 
+2024-07-05T15:24:49.876Z info: Request of type rest handled by server localhost:9003
+2024-07-05T15:25:35.364Z info: Request handled by Fifo Queue 
+2024-07-05T15:25:35.477Z info: Request of type graphql handled by server localhost:9004
+2024-07-05T15:25:48.072Z info: Request handled by Fifo Queue 
+2024-07-05T15:25:48.097Z info: Request of type graphql handled by server localhost:9004
+2024-07-05T15:26:27.887Z info: Request handled by priority Queue 
+2024-07-05T15:26:28.054Z info: Request of type grpc handled by server localhost:9005
