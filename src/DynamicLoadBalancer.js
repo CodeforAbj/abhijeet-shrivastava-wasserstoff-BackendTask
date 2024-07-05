@@ -65,6 +65,17 @@ const handleRequests = (queue) => {
         createProxyMiddleware({
           target: `https://${targetServer.hostName}:${targetServer.port}`,
           changeOrigin: true,
+
+          onProxyReq: (proxyReq, req, res) => {
+            proxyReq.on("error", (err) => {
+              logger.error(`Proxy request error: ${err.message}`);
+              res.status(500).send("Proxy request error");
+            });
+          },
+          onError: (err, req, res) => {
+            logger.error(`Proxy error: ${err.message}`);
+            res.status(502).send("Bad Gateway");
+          },
         })(request.req, request.res, request.next);
       } else {
         request.res.status(503).send("Service Unavailable");
